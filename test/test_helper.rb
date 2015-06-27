@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'alipay'
 require 'fakeweb'
 
-Alipay.app_id = 'jU7dPVNr6etrpbmG'
+Alipay.app_id = '2015031700036703'
 
 Alipay.pub_key = <<EOF
 -----BEGIN PUBLIC KEY-----

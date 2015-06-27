@@ -1,12 +1,13 @@
 require 'net/http'
 require 'date'
+require 'json'
 require 'alipay/utils'
 require 'alipay/sign'
 require 'alipay/sign/rsa'
 require 'alipay/service'
 
 module Alipay
-  @debug_mode = true
+  @debug_mode = false
   @sign_type = 'RSA'
 
   class << self

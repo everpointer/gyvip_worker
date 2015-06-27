@@ -17,49 +17,37 @@ module Alipay
     end
 
     def self.openapi_request(params, options = {})
+      check_required_params(params, %w( method biz_content ))
+
       uri = URI.parse(GATEWAY_URL)
       http = Net::HTTP.new(uri.host, uri.port)
+      http.set_debug_output $stderr if Alipay.debug_mode?
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request = Net::HTTP::Post.new(uri.path)
-      request.add_field('Content-Type', 'application/json')
-      request.body = params.merge(
+
+      # add sign params with system params
+      api_params = {
         'app_id' => (options[:app_id]) || Alipay.app_id,
         'charset' => 'GBK',
         'timestamp' => DateTime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'version' => '1.0',
-        'biz_content' => (params['biz_content'].to_json rescue params['biz_content'])
-      )
+        'sign_type' => options[:sign_type] || Alipay.sign_type,
+        'method' => params['method'],
+        'biz_content' => params['biz_content'].to_json.encode('GBK')  # wrong encode cause error
+      }
+      api_params['sign'] = Alipay::Sign.generate(api_params, options)
+
+      request.body = URI.encode_www_form(api_params)
       http.request(request)
     end
 
-    # only for generate url or get method
-    def self.request_uri(params, options = {})
-      uri = URI(GATEWAY_URL)
-      params.merge!(
-        'app_id' => (opitons[:app_id]) || Alipay.app_id,
-        'charset' => 'GBK',
-        'timestamp' => DateTime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        'version' => '1.0',
-        'biz_content' => (params['biz_content'].to_json rescue params['biz_content'])
-      )
-      uri.query = URI.encode_www_form(sign_params(params, options))
-      uri
-    end
-
-    def self.sign_params(params, options = {})
-      params.merge(
-        'sign_type' => (options[:sign_type] || Alipay.sign_type),
-        'sign' => Alipay::Sign.generate(params, options)
-      )
-    end
-
     def self.check_required_params(params, names)
-      return if !Alipay.debug_mode?
-
+      errors = []
       names.each do |name|
-        warn("Alipay Warn: missing required options: #{name}") unless params.has_key?(name)
+        errors.push "Alipay Serivce Error: missing required options: #{name}" unless params.has_key?(name)
       end
+      raise(ArgumentError, errors.join('\n')) if errors.any?
     end
   end
 end
