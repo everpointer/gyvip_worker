@@ -5,3 +5,5 @@ gem 'sidekiq'
 
 gem 'minitest'
 gem 'fakeweb'
+gem 'thin'
+gem 'sinatra'
