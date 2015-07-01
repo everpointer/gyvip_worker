@@ -1,6 +1,6 @@
 require 'oci8'
 require 'json'
-require_relative './task_helper'
+require_relative './script_helper'
 
 # constants
 

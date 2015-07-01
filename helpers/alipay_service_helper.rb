@@ -1,8 +1,8 @@
-$:.unshift(File.join(File.dirname(__FILE__), 'lib')) unless $LOAD_PATH.include?(File.join(File.dirname(__FILE__), 'lib'))
+$:.unshift(File.expand_path('../../lib', __FILE__)) unless $LOAD_PATH.include?(File.expand_path('../lib', __FILE__))
 require 'alipay'
 
-RSA_PRIVATE_KEY_FILE = File.join(File.dirname(__FILE__), 'key/rsa_private_key.pem')
-RSA_PUBLIC_KEY_FILE = File.join(File.dirname(__FILE__), 'key/rsa_private_key.pem')
+RSA_PRIVATE_KEY_FILE = File.expand_path('../../key/rsa_private_key.pem', __FILE__)
+RSA_PUBLIC_KEY_FILE = File.expand_path('../../key/rsa_private_key.pem', __FILE__)
 # Alipay setting
 Alipay.app_id = '2015031700036703'
 Alipay.private_key = File.read(RSA_PRIVATE_KEY_FILE)
@@ -10,7 +10,7 @@ Alipay.pub_key = File.read(RSA_PUBLIC_KEY_FILE)
 Alipay.debug_mode = false
 # 会员中心地址
 
-module AlipayTasks
+module AlipayServiceHelper
   MEMBER_URL = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2015031700036703&redirect_uri=http://everpointer-gyvip.daoapp.io?platform=alipay&scope=auth_userinfo'
   class << self
     # 积分充值模版消息
@@ -37,7 +37,7 @@ module AlipayTasks
             },
             keyword3: {
               color: "#000000",
-              value: "#{balance} 积分，卡内余额"
+              value: "卡内余额，#{balance} 积分"
             },
             remark: {
               color: "#000000",
