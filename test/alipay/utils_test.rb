@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'alipay_test_helper'
 
 class Alipay::UtilsTest < Minitest::Test
   def test_stringify_keys

@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'alipay_test_helper'
 
 class Alipay::SignTest < Minitest::Test
   def setup

@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'alipay_test_helper'
 
 class AlipayTest < Minitest::Test
   def test_debug_mode_default

@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'alipay_test_helper'
 
 class Alipay::ServiceTest < Minitest::Test
   def test_fwc_message_single_send
