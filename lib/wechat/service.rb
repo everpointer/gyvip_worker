@@ -52,5 +52,15 @@ module Wechat
       end
       raise(ArgumentError, errors.join('\n')) if errors.any?
     end
+
+    def self.resquest_successful?(response)
+      raise RuntimeError, "Wechat request failed with unknown error." unless response.code == '200'
+      result = JSON.parse(response.body)
+      if result['errcode']  == 0
+        true
+      else
+        false
+      end
+    end
   end
 end

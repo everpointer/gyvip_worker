@@ -52,15 +52,25 @@ require_relative "../workers/setup"
 member_score_change_logs.each do |score_log|
   worker_name = SCORE_WORKERS["op_type_#{score_log['op_type']}-#{score_log['platform']}"]
   # p worker_name
+  # if worker_name && score_log['platform'] == 'alipay'
+  #   eval(
+  #     "#{worker_name}.perform_async(
+  #       '#{score_log['open_id']}',
+  #       '#{score_log['card_no']}',
+  #       #{score_log['amount'].to_f},
+  #       #{score_log['balance'].to_f},
+  #       '#{score_log['created_at']}'
+  #     )"
+  #   )
   if worker_name
     eval(
       "#{worker_name}.perform_async(
-        '#{score_log['open_id']}',
-        '#{score_log['card_no']}',
-        #{score_log['amount'].to_f},
-        #{score_log['balance'].to_f},
-        '#{score_log['created_at']}'
-    )"
+        'open_id' => '#{score_log['open_id']}',
+        'card_no' => '#{score_log['card_no']}',
+        'amount' => #{score_log['amount'].to_f},
+        'balance' => #{score_log['balance'].to_f},
+        'created_at' => '#{score_log['created_at']}'
+      )"
     )
   end
 end

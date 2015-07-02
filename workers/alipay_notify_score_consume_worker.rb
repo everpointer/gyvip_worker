@@ -5,7 +5,8 @@ class AlipayNotifyScoreConsumeWorker
   include Sidekiq::Worker
   sidekiq_options :queue => :notify_score_change, :retry => false, :backtrace => true
 
-  def perform(open_id, card_no, amount, balance, created_at, options = {})
-    AlipayServiceHelper.notify_score_consume(open_id, card_no, amount, balance, created_at, options)
+  # params: open_id, card_no, amount, balance, created_at
+  def perform(params, options = {})
+    AlipayServiceHelper.notify_score_consume(params, options)
   end
 end
