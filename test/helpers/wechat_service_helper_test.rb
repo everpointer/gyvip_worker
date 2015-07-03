@@ -1,5 +1,3 @@
-require 'dotenv'
-Dotenv.load
 require 'wechat_test_helper'
 require 'redis_store'
 require_relative '../../helpers/wechat_service_helper'

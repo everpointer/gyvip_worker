@@ -15,8 +15,8 @@ def lc_cloud_function(func_name, params)
 
   headers = {
     'Content-Type' => 'application/json',
-    'X-AVOSCloud-Application-Id' => LEAN_CLOUD_APP_ID,
-    'X-AVOSCloud-Application-Key' => LEAN_CLOUD_APP_KEY
+    'X-AVOSCloud-Application-Id' => ENV['LEAN_CLOUD_APP_ID'],
+    'X-AVOSCloud-Application-Key' => ENV['LEAN_CLOUD_APP_KEY']
   }
   response = http.request_post(uri.path, params.to_json, headers)
   response

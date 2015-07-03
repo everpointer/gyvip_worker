@@ -1,12 +1,14 @@
 $:.unshift(File.expand_path('../../lib', __FILE__)) unless $LOAD_PATH.include?(File.expand_path('../lib', __FILE__))
 require 'alipay'
 
-RSA_PRIVATE_KEY_FILE = File.expand_path('../../key/rsa_private_key.pem', __FILE__)
-RSA_PUBLIC_KEY_FILE = File.expand_path('../../key/rsa_private_key.pem', __FILE__)
+# RSA_PRIVATE_KEY_FILE = File.expand_path('../../key/rsa_private_key.pem', __FILE__)
+# RSA_PUBLIC_KEY_FILE = File.expand_path('../../key/rsa_private_key.pem', __FILE__)
 # Alipay setting
-Alipay.app_id = '2015031700036703'
-Alipay.private_key = File.read(RSA_PRIVATE_KEY_FILE)
-Alipay.pub_key = File.read(RSA_PUBLIC_KEY_FILE)
+Alipay.app_id = ENV['ALIPAY_APP_ID']
+# Alipay.private_key = File.read(RSA_PRIVATE_KEY_FILE)
+# Alipay.pub_key = File.read(RSA_PUBLIC_KEY_FILE)
+Alipay.private_key = ENV['ALIPAY_PRIVATE_KEY']
+Alipay.pub_key = ENV['ALIPAY_PUB_KEY']
 Alipay.debug_mode = false
 # 会员中心地址
 

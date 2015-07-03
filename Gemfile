@@ -7,4 +7,4 @@ gem 'minitest'
 gem 'fakeweb'
 gem 'thin'
 gem 'sinatra'
-gem 'dotenv'
+gem 'dotenv', groups: [:development, :test]

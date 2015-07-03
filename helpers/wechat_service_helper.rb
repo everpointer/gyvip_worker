@@ -3,8 +3,8 @@ require 'wechat'
 require 'redis_store'
 
 # Wechat setting
-Wechat.app_id = 'wx13313ffb9bfbc309'
-Wechat.app_secret = '3231006417371b4776339eb58f55e4f9'
+Wechat.app_id = ENV['WECHAT_APP_ID']
+Wechat.app_secret = ENV['WECHAT_APP_SECRET']
 
 module WechatServiceHelper
   MEMBER_URL = 'http://everpointer-gyvip.daoapp.io/?platform=wechat'
