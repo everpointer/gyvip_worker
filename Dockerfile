@@ -1,8 +1,5 @@
 FROM ruby-oci
 
-ENV NLS_LANG=american_america.UTF8
-ENV RACL_ENV=production
-
 WORKDIR /app
 
 ADD Gemfile /app/
@@ -12,4 +9,4 @@ RUN bundle install
 ADD . /app
 
 ENTRYPOINT ["bundle", "exec"]
-CMD [ "irb" ]
+CMD [ "sidekiq -C config/sidekiq.yml -r ./workers/setup.rb" ]

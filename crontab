@@ -1,0 +1,2 @@
+*/5 * * * * root bundle exec ruby /app/scripts/process_hgs_payment.rb >> /var/log/cron.log 2>&1
+
