@@ -67,3 +67,12 @@ end
 # update latest transcation log id
 latest_log_id = score_change_logs.last['log_id']
 write_latest_transaction_log_id(latest_log_id)
+# update remote transaction log id
+queued_score_change_log_ids = member_score_change_logs.inject([]) do |log_ids, log|
+  log_ids.push log['log_id']
+end.uniq
+# store process logs
+lc_log_batch_process_transaction(
+    latest_log_id,
+    queued_score_change_log_ids: queued_score_change_log_ids
+);
