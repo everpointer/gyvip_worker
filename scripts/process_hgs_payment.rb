@@ -8,7 +8,9 @@ require_relative './script_helper'
 # oci config
 oci = OCI8.new(ENV['KMTK_PAY_USERNAME'], ENV['KMTK_PAY_PASSWORD'], ENV['KMTK_PAY_HOST'])
 # organize sql
-sql = 'SELECT * FROM "TRANSACTIONLOG" where ID > ' + read_latest_transaction_log_id().to_s
+# fetch latest log id from remote
+last_transaction_log_id = read_last_transaction_log_id
+sql = 'SELECT * FROM "TRANSACTIONLOG" where ID > ' + last_transaction_log_id.to_s
 sql += ' AND ROWNUM < 3'
 sql += ' ORDER by ID'
 # execute and parse logs
@@ -66,7 +68,7 @@ end
 
 # update latest transcation log id
 latest_log_id = score_change_logs.last['log_id']
-write_latest_transaction_log_id(latest_log_id)
+# write_latest_transaction_log_id(latest_log_id)
 # update remote transaction log id
 queued_score_change_log_ids = member_score_change_logs.inject([]) do |log_ids, log|
   log_ids.push log['log_id']

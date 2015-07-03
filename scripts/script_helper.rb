@@ -50,7 +50,7 @@ def lc_log_batch_process_transaction(latest_log_id, params)
   });
 end
 
-def lc_get_latest_batch_process_transaction_log_id
+def lc_get_last_batch_process_transaction_log_id
   url = 'https://api.leancloud.cn/1.1/classes/BatchProcessTransactionLogs'
   response = lc_get(url, {
     'limit' => 1,
@@ -92,19 +92,20 @@ def lc_get_openids_by_cardno(params)
 end
 
 ## store kmkt transaction log id
-TRANSACTION_LOG_ID_FILE = File.expand_path('../../data/transaction_log_id.txt', __FILE__)
+# TRANSACTION_LOG_ID_FILE = File.expand_path('../../data/transaction_log_id.txt', __FILE__)
 # read log_id from remote database or local file
 # log_id file won't exist when first deployed
-def read_latest_transaction_log_id
-  if !File.exist?(TRANSACTION_LOG_ID_FILE)
-    log_id = lc_get_latest_batch_process_transaction_log_id
-    write_latest_transaction_log_id(log_id)
-    log_id
-  else
-    File.read(TRANSACTION_LOG_ID_FILE).to_i
-  end
+def read_last_transaction_log_id
+  # if !File.exist?(TRANSACTION_LOG_ID_FILE)
+  #   log_id = lc_get_latest_batch_process_transaction_log_id
+  #   write_latest_transaction_log_id(log_id)
+  #   log_id
+  # else
+  #   File.read(TRANSACTION_LOG_ID_FILE).to_i
+  # end
+  lc_get_last_batch_process_transaction_log_id
 end
 
-def write_latest_transaction_log_id(log_id)
-  File.write(TRANSACTION_LOG_ID_FILE, log_id)
-end
+# def write_latest_transaction_log_id(log_id)
+#   File.write(TRANSACTION_LOG_ID_FILE, log_id)
+# end
