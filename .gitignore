@@ -3,3 +3,4 @@ key
 tmp
 .env
 data/transaction_log_id.txt
+.dump.rdb

@@ -7,8 +7,8 @@ require 'alipay'
 Alipay.app_id = ENV['ALIPAY_APP_ID']
 # Alipay.private_key = File.read(RSA_PRIVATE_KEY_FILE)
 # Alipay.pub_key = File.read(RSA_PUBLIC_KEY_FILE)
-Alipay.private_key = ENV['ALIPAY_PRIVATE_KEY']
-Alipay.pub_key = ENV['ALIPAY_PUB_KEY']
+Alipay.private_key = ENV['ALIPAY_PRIVATE_KEY'].gsub("\\n", "\n")
+Alipay.pub_key = ENV['ALIPAY_PUB_KEY'].gsub("\\n", "\n")
 Alipay.debug_mode = false
 # 会员中心地址
 
