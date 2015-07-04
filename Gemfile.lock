@@ -3,6 +3,7 @@ GEM
   specs:
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    chronic (0.10.2)
     connection_pool (2.2.0)
     daemons (1.2.3)
     dotenv (2.0.2)
@@ -35,6 +36,8 @@ GEM
     tilt (2.0.1)
     timers (4.0.1)
       hitimes
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -47,6 +50,7 @@ DEPENDENCIES
   sidekiq
   sinatra
   thin
+  whenever
 
 BUNDLED WITH
    1.10.4

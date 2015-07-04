@@ -1,6 +1,7 @@
 .ruby-version*
 key
 tmp
+logs
 .env
 data/transaction_log_id.txt
 dump.rdb
