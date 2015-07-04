@@ -9,3 +9,4 @@ gem 'thin'
 gem 'sinatra'
 gem 'dotenv', groups: [:development, :test]
 gem 'whenever', require: false
+gem 'foreman', require: false

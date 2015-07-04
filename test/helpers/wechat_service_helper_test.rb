@@ -5,7 +5,7 @@ require_relative '../../helpers/wechat_service_helper'
 class WechatServiceHelperTest < Minitest::Test
   def setup
     @redis = RedisStore.redis
-    @redis.select 1  # 1 for testing db
+    ENV['REDIS_SELECT_DB'] = '1'
   end
 
   def test_access_token_without_redis

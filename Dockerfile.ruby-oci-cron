@@ -1,0 +1,10 @@
+FROM ruby-oci
+
+
+RUN apt-get update
+
+RUN apt-get install -y cron
+
+RUN apt-get clean -y
+
+RUN /etc/init.d/cron start
