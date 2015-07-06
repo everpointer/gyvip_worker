@@ -10,6 +10,8 @@ oci = OCI8.new(ENV['KMTK_PAY_USERNAME'], ENV['KMTK_PAY_PASSWORD'], ENV['KMTK_PAY
 # organize sql
 # fetch latest log id from remote
 last_transaction_log_id = read_last_transaction_log_id
+puts "Starting processing hgs payment with Log id > #{last_transaction_log_id}  at #{DateTime.now.strftime('%Y-%m-%d %H:%I:%S')}"
+
 sql = 'SELECT * FROM "TRANSACTIONLOG" where ID > ' + last_transaction_log_id.to_s
 sql += ' AND ROWNUM < 3'
 sql += ' ORDER by ID'
@@ -78,3 +80,4 @@ lc_log_batch_process_transaction(
     latest_log_id,
     queued_score_change_log_ids: queued_score_change_log_ids
 );
+puts "Done processing hgs payment with Log id from #{last_transaction_log_id} to #{latest_log_id} at #{DateTime.now.strftime('%Y-%m-%d %H:%I:%S')}"
