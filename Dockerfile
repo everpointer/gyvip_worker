@@ -1,5 +1,7 @@
 FROM ruby-oci-cron
 
+ENV APP_PATH /app
+
 WORKDIR /app
 
 ADD Gemfile /app/
@@ -10,7 +12,8 @@ ADD . /app
 RUN mkdir -p /app/tmp/pids
 RUN mkdir -p /app/logs
 # generate crontab
-RUN bundle exec whenever --update-crontab --user root
+#ADD crontab /etc/crontab
+RUN bundle exec whenever --update-crontab
 
 # for sidekiq-web
 EXPOSE 9292
