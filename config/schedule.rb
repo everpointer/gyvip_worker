@@ -21,7 +21,7 @@
 set :environment_variable, "RACK_ENV"
 set :environment, "production"
 set :path, ENV["APP_PATH"]
-set :output, "logs/cron_log.log"
+set :output, "logs/cron.log"
 
 job_type :ruby, "cd :path && :environment_variable=:environment bundle exec ruby :task :output"
 job_type :dot_ruby, "cd :path && :environment_variable=:environment bundle exec dotenv ruby :task :output"

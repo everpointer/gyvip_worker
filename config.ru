@@ -2,7 +2,7 @@
 require 'sidekiq'
 
 Sidekiq.configure_client do |config|
-  config.redis = { :size => 1 }
+  config.redis = { :host => ENV['REDIS_PORT_6379_TCP_ADDR'], :port => ENV['REDIS_PORT_6379_TCP_PORT'] }
 end
 
 require 'sidekiq/web'
