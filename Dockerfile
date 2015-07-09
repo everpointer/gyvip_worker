@@ -1,4 +1,4 @@
-FROM ruby-oci-cron
+FROM everpointer/ruby-oci-cron:latest
 
 ENV APP_PATH /app
 

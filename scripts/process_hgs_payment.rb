@@ -13,7 +13,7 @@ last_transaction_log_id = read_last_transaction_log_id
 puts "Starting processing hgs payment with Log id > #{last_transaction_log_id}  at #{DateTime.now.strftime('%Y-%m-%d %H:%I:%S')}"
 
 sql = 'SELECT * FROM "TRANSACTIONLOG" where ID > ' + last_transaction_log_id.to_s
-sql += ' AND ROWNUM < 3'
+sql += ' AND ROWNUM < 50'
 sql += ' ORDER by ID'
 # execute and parse logs
 score_change_logs = []

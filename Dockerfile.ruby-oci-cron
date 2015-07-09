@@ -1,4 +1,4 @@
-FROM ruby-oci
+FROM everpointer/ruby-oci:latest
 
 
 RUN apt-get update
