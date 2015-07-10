@@ -21,4 +21,4 @@ RUN bundle exec whenever --update-crontab
 # for sidekiq-web
 EXPOSE 9292
 
-# CMD [ "./scripts/bootstrap.sh" ]
+CMD [ "./scripts/bootstrap.sh" ]

@@ -32,11 +32,11 @@ oci.exec(sql).fetch_hash do |record|
   end
 end
 # fake data for testing
-card_no_logs[0] = ('143313000951')
-card_no_logs[1] = ('143313000951')
-score_change_logs[0]['card_no'] = '143313000951'
-score_change_logs[1]['card_no'] = '143313000951'
-score_change_logs[1]['op_type'] = 2
+# card_no_logs[0] = ('143313000951')
+# card_no_logs[1] = ('143313000951')
+# score_change_logs[0]['card_no'] = '143313000951'
+# score_change_logs[1]['card_no'] = '143313000951'
+# score_change_logs[1]['op_type'] = 2
 
 # get opens through card_nos
 members = lc_get_openids_by_cardno({ 'card_nos' => card_no_logs })
