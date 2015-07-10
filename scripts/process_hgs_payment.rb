@@ -42,7 +42,8 @@ end
 members = lc_get_openids_by_cardno({ 'card_nos' => card_no_logs })
 
 member_score_change_logs = []
-score_change_logs.each do |log|
+# only handle score deposit and consume logs
+score_change_logs.select {|log| log['op_type'] == 1 || log['op_type'] == 2}.each do |log|
   # card_no 是否有open id
   if members.has_key?(log['card_no'])
     member_score_change_logs.concat(
